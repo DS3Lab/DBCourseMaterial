@@ -13,7 +13,7 @@ data.
     PRIMARY KEY (dept_no)
 );`{{execute}}
 
-`SELECT * FROM departments;`
+`SELECT * FROM departments;`{{execute}}
 
 Now, let's insert some values using the syntax we already know:
 
@@ -41,11 +41,11 @@ Now that we have the `employees` and `departments` tables, we will create the
     from_date   DATE            NOT NULL,
     to_date     DATE            NOT NULL,
     PRIMARY KEY (emp_no, dept_no, from_date)
-);`
+);`{{execute}}
 
 Again, we verify that the table contains no rows:
 
-`SELECT * FROM dept_emp;`
+`SELECT * FROM dept_emp;`{{execute}}
 
 And then we connect every employee with a department:
 
@@ -66,7 +66,7 @@ Primary key non-duplicates:
 However, we can change one of the three attributes and then our inserts are
 valid:
 `INSERT INTO dept_emp
-    SELECT emp_no, 5 AS dept_no, '1999-01-01', NOW() FROM employees;`
+    SELECT emp_no, 5 AS dept_no, '1999-01-01', NOW() FROM employees;`{{execute}}
 
 And finally since we do not have the notion of foreign keys (yet!), we can
 insert non-existing employees/departments.
