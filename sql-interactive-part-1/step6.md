@@ -58,3 +58,65 @@ And the actual data:
 Let's verify that we have data in our `employees` table again:
 
 `SELECT * FROM employees;`{{execute}}
+
+Now let's count the number of employees present in our database and also find
+the maximum employee number::
+
+`SELECT COUNT(*) FROM employees;`{{execute}}
+
+`SELECT MAX(emp_no) FROM employees;`{{execute}}
+
+However, some names occur several times, therefore to find the number of
+distinct employees our database has we execute the following query:
+
+`SELECT COUNT(DISTINCT last_name) FROM employees;`{{execute}}
+
+And to find the distinct last names the following (only displaying the first 10:
+
+`SELECT DISTINCT last_name FROM employees LIMIT 10;`{{execute}}
+
+If we sort the last names we can actually see that `SELECT DISTINCT` actually
+removes duplicates:
+
+`SELECT DISTINCT last_name
+FROM employees
+ORDER BY last_name DESC;`{{execute}}
+
+We can also sort by different columns and in different directions:
+
+`SELECT first_name, last_name
+FROM employees
+ORDER BY last_name ASC, first_name DESC;`{{execute}}
+
+Now let's find how often each last name occurs:
+
+`SELECT last_name, COUNT(*)
+FROM employees
+GROUP BY last_name;`{{execute}}
+
+But better the most common names to be on top:
+
+`SELECT last_name, COUNT(*)
+FROM employees
+GROUP BY last_name
+ORDER BY COUNT(*) DESC;`{{execute}}
+
+To find any first_name per group we apply an aggregate function:
+`SELECT MAX(first_name) last_name, COUNT(*) as c
+FROM employees
+GROUP BY last_name
+ORDER BY c DESC;`{{execute}}
+
+`SELECT (ARRAY_AGG(first_name))[1], last_name, COUNT(*) as c
+FROM employees
+GROUP BY last_name
+ORDER BY c DESC;`{{execute}}
+
+How to see the names occuring exactly 4 times?
+
+`SELECT last_name, COUNT(*)
+FROM employees
+GROUP BY last_name
+-- WHERE? No, WHERE is done *before* the grouping!
+HAVING COUNT(*) = 4;`{{execute}}
+
