@@ -44,8 +44,17 @@ We then import the schema of the tables:
 And the actual data:
 
 `\copy employees FROM '/var/lib/postgresql/employee/data/employees.tbl' WITH delimiter AS '|';`{{execute}}
+
 `\copy departments FROM '/var/lib/postgresql/employee/data/departments.tbl' WITH delimiter AS '|';`{{execute}}
+
 `\copy dept_manager FROM '/var/lib/postgresql/employee/data/dept_manager.tbl' WITH delimiter AS '|';`{{execute}}
+
 `\copy dept_emp FROM '/var/lib/postgresql/employee/data/dept_emp.tbl' WITH delimiter AS '|';`{{execute}}
+
 `\copy titles FROM '/var/lib/postgresql/employee/data/titles.tbl' WITH delimiter AS '|';`{{execute}}
+
 `\copy salaries FROM '/var/lib/postgresql/employee/data/salaries.tbl' WITH delimiter AS '|';`{{execute}}
+
+Let's verify that we have data in our `employees` table again:
+
+`SELECT * FROM employees;`{{execute}}
