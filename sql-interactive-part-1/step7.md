@@ -72,7 +72,7 @@ We first join the employees with their salaries and their department:
 FROM employees
 JOIN salaries USING(emp_no)
 JOIN dept_emp USING(emp_no)
-ORDER BY emp_no;`{{execute}
+ORDER BY emp_no;`{{execute}}
 
 Then we calculate the minimum salary per department:
 
@@ -101,7 +101,7 @@ Finally, we combine the two above queries and by joining on the common columns:
 )
 SELECT emp_no, dept_no, salary
 FROM emp_sal_dept
-JOIN min_salaries USING(dept_no, salary) -- pay attention, we join on both attributes
+JOIN min_salaries USING(dept_no, salary)
 ORDER BY dept_no;`{{execute}}
 
 The above query is not accurate because the salaries and employments have to
@@ -114,7 +114,7 @@ the correct query:
     FROM employees as e
     JOIN salaries as s USING(emp_no)
     JOIN dept_emp as de USING(emp_no)
-    WHERE (s.from_date, s.to_date) OVERLAPS (de.from_date, de.to_date) -- This eliminates incorrect entries
+    WHERE (s.from_date, s.to_date) OVERLAPS (de.from_date, de.to_date)
     ORDER BY emp_no
 ), min_salaries AS
 (
@@ -180,7 +180,7 @@ SELECT emp_no,
        salary,
     ( SELECT avg(salary) AS avg_salary
      FROM emp_sal_dept
-     WHERE emp_sal_dept.dept_no = emp_sal_dept_o.dept_no --reference to the outer relation
+     WHERE emp_sal_dept.dept_no = emp_sal_dept_o.dept_no
 ) , dept_no
 FROM emp_sal_dept AS emp_sal_dept_o;`{{execute}}
 
