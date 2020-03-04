@@ -289,6 +289,13 @@
     "intro": {
       "text": "intro.md"
     },
+    "assets": {
+    "client": [
+      {
+        "file": "employee.zip",
+        "target": "~/"
+      }
+    ],
     "finish": {
       "text": "finish.md"
     }
