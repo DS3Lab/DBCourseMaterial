@@ -46,15 +46,9 @@
       "text": "intro.md"
     },
     "assets": {
-    "client": [
-      {
-        "file": "docker-compose.yml",
-        "target": "~/"
-      }
-    ],
     "host01": [
       {
-        "file": "config.yml",
+        "file": "employee.zip",
         "target": "~/"
       }
     ]
