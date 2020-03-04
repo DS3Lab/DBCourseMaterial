@@ -8,7 +8,7 @@ Run the following commands in your katakoda interactive environment to install P
 
 `wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -`{{execute}}
 
-`sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `` `lsb_release -cs` ``-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'{{execute}}
+``sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'``{{execute}}
 
 `apt-get update`{{execute}}
 
