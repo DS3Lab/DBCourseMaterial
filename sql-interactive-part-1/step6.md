@@ -80,37 +80,43 @@ removes duplicates:
 
 `SELECT DISTINCT last_name
 FROM employees
-ORDER BY last_name DESC;`{{execute}}
+ORDER BY last_name DESC
+LIMIT 10;;`{{execute}}
 
 We can also sort by different columns and in different directions:
 
 `SELECT first_name, last_name
 FROM employees
-ORDER BY last_name ASC, first_name DESC;`{{execute}}
+ORDER BY last_name ASC, first_name DESC
+LIMIT 10;`{{execute}}
 
 Now let's find how often each last name occurs:
 
 `SELECT last_name, COUNT(*)
 FROM employees
-GROUP BY last_name;`{{execute}}
+GROUP BY last_name
+LIMIT 10;`{{execute}}
 
 But better the most common names to be on top:
 
 `SELECT last_name, COUNT(*)
 FROM employees
 GROUP BY last_name
-ORDER BY COUNT(*) DESC;`{{execute}}
+ORDER BY COUNT(*) DESC
+LIMIT 10;`{{execute}}
 
 To find any first_name per group we apply an aggregate function:
 `SELECT MAX(first_name) last_name, COUNT(*) as c
 FROM employees
 GROUP BY last_name
-ORDER BY c DESC;`{{execute}}
+ORDER BY c DESC
+LIMIT 10;`{{execute}}
 
 `SELECT (ARRAY_AGG(first_name))[1], last_name, COUNT(*) as c
 FROM employees
 GROUP BY last_name
-ORDER BY c DESC;`{{execute}}
+ORDER BY c DESC
+LIMIT 10;`{{execute}}
 
 How to see the names occuring exactly 4 times?
 
