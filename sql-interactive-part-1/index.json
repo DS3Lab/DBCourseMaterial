@@ -294,9 +294,10 @@
     }
   },
   "environment": {
-    "uilayout": "editor-terminal"
+    "uilayout": "terminal"
   },
   "backend": {
-    "imageid": "ubuntu1804"
+    "imageid": "kafka:2.4"
+
   }
 }
