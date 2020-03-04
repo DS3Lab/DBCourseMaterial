@@ -28,3 +28,5 @@ database to run our queries.
 `CREATE DATABASE testdatabase;`{{execute}}
 
 `\c testdatabase`{{execute}}
+
+Everything is set up, so let's get started!
