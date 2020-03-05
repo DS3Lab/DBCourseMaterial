@@ -130,7 +130,8 @@ JOIN min_salaries USING(dept_no, salary)
 ORDER BY dept_no;`{{execute}}
 
 Now, let's do a similar query to the one before. Specifically, we will for every
-employee his salary and the average salary for his department.We break again the
+employee his salary and the average salary for his department. Our final query will
+have a correlated subquery in `SELECT`. We start by breaking again the
 problem into steps:
 
 First we join the employee, salary and department tables:
@@ -210,7 +211,8 @@ SELECT emp_no,
 FROM emp_sal_dept
 JOIN avg_salaries USING(dept_no);`{{execute}}
 
-For the final query, let's calculate the oldest managers per department:
+For the final query, let's calculate the oldest managers per department. This
+query has a correlated query in the `WHERE` clause:
 
 `WITH max_age_dept AS
     ( SELECT max(age(birth_date)) AS max_age,
@@ -228,7 +230,9 @@ WHERE age(eo.birth_date) >=
          FROM max_age_dept
          WHERE dept_no = dmo.dept_no );`{{execute}}
 
-This query cannot be written with a join! The query would look like that:
+Now let's try to write a correlated subquery in the `FROM` clause:
+
+Why does this not work?
 
 `WITH emp_sal_dept AS
     ( SELECT emp_no,
@@ -245,11 +249,8 @@ SELECT emp_no,
        salary,
        avg_salary,
        dept_no
+FROM emp_sal_dept AS emp_sal_dept_o,
+
     ( SELECT avg(salary) AS avg_salary
      FROM emp_sal_dept
-     WHERE emp_sal_dept.dept_no = emp_sal_dept_o.dept_no ) AS average_salary
-FROM emp_sal_dept AS emp_sal_dept_o`{{execute}}
-
-However, the subquery has to be evaluated before the outer query,
-so emp_sal_dept_o is not available to the subquery yet
-
+     WHERE emp_sal_dept.dept_no = emp_sal_dept_o.dept_no ) AS average_salary;`{{execute}}
