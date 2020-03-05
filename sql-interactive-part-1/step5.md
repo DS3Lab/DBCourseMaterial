@@ -42,6 +42,13 @@ WHERE employees.emp_no = dept_emp.emp_no
 The above query still returns too many records. Let's instead return only the
 *current* `dept_emp` entries.
 
+`SELECT employees.emp_no, first_name, last_name, departments.dept_no, dept_name, to_date
+FROM employees, departments, dept_emp
+WHERE employees.emp_no = dept_emp.emp_no
+    AND dept_emp.dept_no = departments.dept_no
+    AND to_date > NOW();`{{execute}}
+
+
 After we have seen how joins work, we can continues on their variants.
 
 Cross joins (aka cartesian products):

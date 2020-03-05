@@ -123,6 +123,5 @@ How to see the names occuring exactly 4 times?
 `SELECT last_name, COUNT(*)
 FROM employees
 GROUP BY last_name
--- WHERE? No, WHERE is done *before* the grouping!
 HAVING COUNT(*) = 4;`{{execute}}
 

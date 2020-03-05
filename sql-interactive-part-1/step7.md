@@ -18,6 +18,7 @@ Now let's compute the number of occurrences of the most common name(s) but
 without using any constants.
 
 To start we compute the number of occurrences of the most common name(s):
+
 `SELECT MAX(c)
 FROM
 (
@@ -244,10 +245,10 @@ SELECT emp_no,
        salary,
        avg_salary,
        dept_no
-FROM emp_sal_dept AS emp_sal_dept_o,
     ( SELECT avg(salary) AS avg_salary
      FROM emp_sal_dept
-     WHERE emp_sal_dept.dept_no = emp_sal_dept_o.dept_no ) AS average_salary;`{{execute}}
+     WHERE emp_sal_dept.dept_no = emp_sal_dept_o.dept_no ) AS average_salary
+FROM emp_sal_dept AS emp_sal_dept_o`{{execute}}
 
 However, the subquery has to be evaluated before the outer query,
 so emp_sal_dept_o is not available to the subquery yet
