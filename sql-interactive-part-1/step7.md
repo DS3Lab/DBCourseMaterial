@@ -253,3 +253,19 @@ FROM emp_sal_dept AS emp_sal_dept_o,
     ( SELECT avg(salary) AS avg_salary
      FROM emp_sal_dept
      WHERE emp_sal_dept.dept_no = emp_sal_dept_o.dept_no ) AS average_salary;`{{execute}}
+
+By the order of execution SQL has the nested subquery has to be evaluated before
+the outer query and therefore `emp_sal_dept_o` is not available to the subquery
+yet.
+
+In general in SQL there is the following standard execution order:
+1. FROM
+2. WHERE
+3. GROUP BY
+4. HAVING
+5. SELECT
+6. ORDER BY
+7. LIMIT
+
+Note that sometimes optimizers may sometimes "violate" the order of execution to
+make queries run faster.
