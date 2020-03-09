@@ -250,7 +250,6 @@ SELECT emp_no,
        avg_salary,
        dept_no
 FROM emp_sal_dept AS emp_sal_dept_o,
-
     ( SELECT avg(salary) AS avg_salary
      FROM emp_sal_dept
      WHERE emp_sal_dept.dept_no = emp_sal_dept_o.dept_no ) AS average_salary;`{{execute}}
