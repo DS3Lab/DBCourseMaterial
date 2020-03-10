@@ -66,6 +66,14 @@
       "text": "intro.md",
       "courseData": "setup.sh"
     },
+    "assets": {
+    "host01": [
+      {
+        "file": "setup.sh",
+        "target": "~/"
+      }
+    ]
+    },
     "finish": {
       "text": "finish.md"
     }
