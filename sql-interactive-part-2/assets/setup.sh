@@ -8,3 +8,4 @@ apt-get install -y postgresql postgresql-contrib
 pg_ctlcluster 12 main start
 su - postgres
 psql
+CREATE DATABASE artists;
