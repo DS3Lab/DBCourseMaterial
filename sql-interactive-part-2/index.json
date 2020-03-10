@@ -40,7 +40,7 @@
     "assets": {
     "host01": [
       {
-        "file": "artists.zip",
+        "file": "employee.zip",
         "target": "~/"
       }
     ]
