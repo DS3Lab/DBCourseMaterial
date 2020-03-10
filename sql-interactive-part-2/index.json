@@ -1,8 +1,8 @@
 {
-  "title": "Interactive session with SQL (part 2)",
-  "description": "",
+  "title": "Interactive session with SQL",
+  "description": "This tutorial is for the Lecture 6 of the Data Modelling and Databases class [http://www.ds3lab.com/dmdb-2020/#lecture6]",
   "difficulty": "Beginner",
-  "time": "90",
+  "time": "90 minutes",
   "details": {
     "steps": [
       {
@@ -32,39 +32,10 @@
       {
         "title": "Step 7",
         "text": "step7.md"
-      },
-      {
-        "title": "Step 8",
-        "text": "step8.md"
-      },
-      {
-        "title": "Step 9",
-        "text": "step9.md"
-      },
-      {
-        "title": "Step 10",
-        "text": "step10.md"
-      },
-      {
-        "title": "Step 11",
-        "text": "step11.md"
-      },
-      {
-        "title": "Step 12",
-        "text": "step12.md"
-      },
-      {
-        "title": "Step 13",
-        "text": "step13.md"
-      },
-      {
-        "title": "Step 14",
-        "text": "step14.md"
       }
-    ],
+      ],
     "intro": {
-      "text": "intro.md",
-      "courseData": "setup.sh"
+      "text": "intro.md"
     },
     "assets": {
     "host01": [
@@ -83,5 +54,6 @@
   },
   "backend": {
     "imageid": "kafka:2.4"
+
   }
 }
