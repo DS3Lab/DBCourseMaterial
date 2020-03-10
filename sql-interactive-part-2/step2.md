@@ -31,7 +31,7 @@ And more complex projections on our tables:
 `select url, url from artists where name = 'Radiohead';`{{execute}}
 
 `
-select release_id, releases.title, duration/60
+select releases.release_id, releases.title, duration/60
 from releases, tracks
 where releases.title LIKE '%Dark Side Of The Moon%' and
   tracks.title = 'Eclipse';`{{execute}}
@@ -51,7 +51,7 @@ where name = 'Radiohead';`{{execute}}
 We have also seen some special function on dates:
 
 `
-select id, title, released, extract(year from released)
+select release_id, title, released, extract(year from released)
 from releases
 where title LIKE '%OK Computer%';`{{execute}}
 
@@ -125,6 +125,7 @@ where releases.release_id = tracks.release_id
 Now that we have seen joins let's also perform some simple aggregations.
 
 Track with maximum duration:
+
 `select max(duration) from tracks;`{{execute}}
 
 Number of different titles in the `releases` table:
@@ -173,7 +174,7 @@ group by title
 order by count(*) desc;`{{execute}}
 
 
-Show any genre each release that contains the string "Eclipse" has:
+Show any genre each release has that also contains the string "Eclipse":
 
 `
 select max(genre), title, count(*)

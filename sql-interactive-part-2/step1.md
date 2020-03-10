@@ -110,7 +110,7 @@ But changing one attribute is enough:
 Since we do not have foreign key constraints we can freely insert non-existing artists.
 We first verify that the artist does not exist:
 
-`select * from artists where artist_id = 12791247`{{execute}}
+`select * from artists where artist_id = 12791247;`{{execute}}
 
 Then we insert the non-existing artist into the `released_by` table:
 
