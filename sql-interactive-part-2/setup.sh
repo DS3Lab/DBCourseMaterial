@@ -6,5 +6,5 @@ sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg
 apt-get update
 apt-get install -y postgresql postgresql-contrib
 pg_ctlcluster 12 main start
-su - postgres
-psql
+cp data.zip /var/lib/postgresql/
+unzip data.zip
