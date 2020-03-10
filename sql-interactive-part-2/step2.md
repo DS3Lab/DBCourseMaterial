@@ -120,3 +120,71 @@ from releases, tracks
 where releases.release_id = tracks.release_id
   and tracks.title = 'Eclipse'
   and extract(year from releases.released) < 1980;`{{execute}}
+
+
+Now that we have seen joins let's also perform some simple aggregations.
+
+Track with maximum duration:
+`select max(duration) from tracks;`{{execute}}
+
+Number of different titles in the `releases` table:
+
+`select count(distinct title) from releases;`{{execute}}
+
+Number of titles and distinct titles in the `releases` table:
+
+`select count(*), count(distinct title) from releases;`{{execute}}
+
+Longest tracks:
+
+`select title, duration from tracks order by duration desc limit 10;`{{execute}}
+
+Releases with longest tracks:
+
+`
+select releases.title, tracks.title, duration
+from releases join tracks using(release_id)
+order by duration desc
+limit 10;`{{execute}}
+
+Artists with releases with longest tracks:
+
+`select artists.name, releases.title, tracks.title, duration from
+    releases join tracks using(release_id)
+    join released_by using (release_id)
+    join artists using(artist_id)
+    order by duration desc limit 10;`{{execute}}
+
+Find how often a name occurs:
+
+`
+select title, count(*)
+from releases where title = 'Eclipse'
+group by title;`{{execute}}
+
+
+Find how often a name occurs and order by the largest counts:
+
+`
+select title, count(*)
+from releases
+where title like '%Eclipse%'
+group by title
+order by count(*) desc;`{{execute}}
+
+
+Show any genre each release that contains the string "Eclipse" has:
+
+`
+select max(genre), title, count(*)
+from releases
+where title like '%Eclipse%'
+group by title
+order by count(*) desc;`{{execute}}
+
+Find titles that occur 42 times:
+
+`select title, count(*)
+from releases
+group by title
+having count(*) = 42;`{{execute}}
