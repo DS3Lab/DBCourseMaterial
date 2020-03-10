@@ -13,7 +13,7 @@ However, we can extract the same information using a nested query:
 
 `select * from
 (select title, count(*) as c1 from releases group by title) as s1
-where c1 = 42;`
+where c1 = 42;`{{execute}}
 
 Now, we are going to find the most common title name. We will split the query
 into steps. We will first find how many times the most common name occurs:
@@ -57,15 +57,7 @@ order by count(*)
 desc limit 1;`{{execute}}
 
 Let's find the artist with the most releases. We will first find the artists and
-the releases they have.
-
-`select artist_id, count(*) from
-    artists
-    join released_by using(artist_id)
-    join releases using(release_id)
-    limit 10;`{{execute}}
-
-We will then sort them by their releases:
+the number of releases they have.
 
 `select artist_id, count(*) from
     artists
