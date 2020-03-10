@@ -19,9 +19,9 @@ Show all tables present in the database:
 
 Then, create the artists database and connect to it:
 
-`CREATE DATABASE artists`{{execute}}
+`CREATE DATABASE artists;`{{execute}}
 
-`\c artists`{{artists}}
+`\c artists`{{execute}}
 
 Create the artists table:
 
@@ -53,6 +53,8 @@ Some insertions that can go wrong (why?):
 
 `insert into artists (artist_id, name) values ('newid', 'myband3');`{{execute}}
 
+Why does this insertion work?
+
 `insert into artists values (124313252);`{{execute}}
 
 
@@ -75,7 +77,7 @@ Let's count again the number of releases and display the first 5 inserted:
 
 `select count(*) from releases;`{{execute}}
 
-`select * from releases limit 5;`
+`select * from releases limit 5;`{{execute}}
 
 Now let's create a table that connects `releases` with `artists` called `released_by`:
 
@@ -93,7 +95,7 @@ And again bulk insert data into the table:
 
 Let's count the number of entries and display the first 5:
 
-`select count(*) from released_by;` {{execute}}
+`select count(*) from released_by;`{{execute}}
 
 `select * from released_by limit 5;`{{execute}}
 
@@ -130,7 +132,7 @@ Finally, let's create the `tracks` table:
 
 And bulk insert data into it:
 
-`copy tracks from '/var/lib/postgresql/data/tracks.csv' delimiters ',' csv header;`
+`copy tracks from '/var/lib/postgresql/data/tracks.csv' delimiters ',' csv header;`{{execute}}
 
 We can get the first 10 entries and the tracks called "Eclipse" using the
 two following queries:
