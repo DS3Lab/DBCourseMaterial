@@ -69,7 +69,7 @@
     "assets": {
     "host01": [
       {
-        "file": "data.zip",
+        "file": "artists.zip",
         "target": "~/"
       }
     ]
