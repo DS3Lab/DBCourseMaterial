@@ -6,5 +6,6 @@ sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg
 apt-get update
 apt-get install -y postgresql postgresql-contrib
 pg_ctlcluster 12 main start
-cp data.zip /var/lib/postgresql/
+wget https://www.systems.ethz.ch/sites/default/files/courses/2020-spring/dmdb/artists.zip
+cp artists.zip /var/lib/postgresql/
 unzip data.zip

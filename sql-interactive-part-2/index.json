@@ -22,14 +22,6 @@
       "text": "intro.md",
       "courseData" : "setup.sh"
     },
-    "assets": {
-    "host01": [
-      {
-        "file": "artists.zip",
-        "target": "~/"
-      }
-    ]
-    },
     "finish": {
       "text": "finish.md"
     }
