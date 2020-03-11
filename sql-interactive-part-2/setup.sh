@@ -8,4 +8,4 @@ apt-get install -y postgresql postgresql-contrib
 pg_ctlcluster 12 main start
 wget https://www.systems.ethz.ch/sites/default/files/courses/2020-spring/dmdb/artists.zip
 cp artists.zip /var/lib/postgresql/
-unzip data.zip
+unzip artists.zip
