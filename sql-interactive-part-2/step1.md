@@ -36,7 +36,7 @@ Create the artists table:
 
 Insert the data into the `artists` table:
 
-`copy artists from '/var/lib/postgresql/data/artists.csv' delimiters ',' csv header;`{{execute}}
+`copy artists from '/var/lib/postgresql/artists.csv' delimiters ',' csv header;`{{execute}}
 
 Show how many artists exist in the table:
 `select count(*) from artists;`{{execute}}
@@ -71,7 +71,7 @@ Now that we have the `artists` table, let's create another one called releases:
 
 And bulk insert data into the table:
 
-`copy releases from '/var/lib/postgresql/data/releases.csv' delimiters ',' csv header;`{{execute}}
+`copy releases from '/var/lib/postgresql/releases.csv' delimiters ',' csv header;`{{execute}}
 
 Let's count again the number of releases and display the first 5 inserted:
 
@@ -91,7 +91,7 @@ create table released_by (
 
 And again bulk insert data into the table:
 
-`copy released_by from '/var/lib/postgresql/data/released_by.csv' delimiters ',' csv header;`{{execute}}
+`copy released_by from '/var/lib/postgresql/released_by.csv' delimiters ',' csv header;`{{execute}}
 
 Let's count the number of entries and display the first 5:
 
@@ -132,7 +132,7 @@ Finally, let's create the `tracks` table:
 
 And bulk insert data into it:
 
-`copy tracks from '/var/lib/postgresql/data/tracks.csv' delimiters ',' csv header;`{{execute}}
+`copy tracks from '/var/lib/postgresql/tracks.csv' delimiters ',' csv header;`{{execute}}
 
 We can get the first 10 entries and the tracks called "Eclipse" using the
 two following queries:
