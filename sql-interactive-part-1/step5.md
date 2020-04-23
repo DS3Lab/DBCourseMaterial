@@ -33,7 +33,7 @@ WHERE employees.emp_no = dept_emp.emp_no
 What went wrong and why the following query fixes the issue?
 
 `SELECT employees.emp_no, first_name, last_name,
-       departments.dept_no, dept_name
+       departments.dept_no, dept_name,
        from_date, to_date
 FROM employees, departments, dept_emp -- better :)
 WHERE employees.emp_no = dept_emp.emp_no
