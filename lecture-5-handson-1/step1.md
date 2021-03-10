@@ -1,32 +1,34 @@
 # Installing Postgres
 
-We will follow again the steps from last time to install a Postgres instance.
+The tutorial should install and start a Postgres server automatically (inside
+docker). Once the installation completes, we have two ways to connect to the
+server. The first is the official client:
 
-Run the following commands in your katakoda interactive environment to install Postgres.
+`psql.sh -U postgres`{{execute}}
 
-`apt-get install wget ca-certificates`{{execute}}
+Let's just confirm that we are indeed connected:
 
-`wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -`{{execute}}
+`\c`{{execute}}
 
-``sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" >> /etc/apt/sources.list.d/pgdg.list'``{{execute}}
+Then quite the client again:
 
-`apt-get update`{{execute}}
+`exit`{{execute}}
 
-`apt-get install -y postgresql postgresql-contrib`{{execute}}
+The second is an inofficial client with a few nice features (inside docker as
+well):
 
-Now that Postgres is install create a running instance and connect to the database.
+`pgcli.sh -h postgres-server -u postgres`{{execute}}
 
-`pg_ctlcluster 12 main start`{{execute}}
+Confirm that we have a connection and quit again:
 
-`su - postgres`{{execute}}
+`\c`{{execute}}
 
-`psql`{{execute}}
+`exit`{{execute}}
 
-Now that we are connected to the database let's create and connect to a test
-database to run our queries.
+Finally, let's populate the database for later:
 
-`CREATE DATABASE testdatabase;`{{execute}}
+`./populate.sh`{{execute}}
 
-`\c testdatabase`{{execute}}
+We can now start with creating a database and connect to it:
 
 Everything is set up, so let's get started!

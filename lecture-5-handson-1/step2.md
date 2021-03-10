@@ -1,13 +1,15 @@
 # Inserting data
 
 In this part of the session, we will see how to insert data in our database
-instance.
+instance. Let's start the client, create a database, and connect to it:
 
-First we setup the database to display messages in English.
+`pgcli.sh -h postgres-server -u postgres`{{execute}}
 
-`SET lc_messages TO 'en_US.UTF-8';`{{execute}}
+`CREATE DATABASE testdatabase;`{{execute}}
 
-Then we create a table called `employees`.
+`\c testdatabase`{{execute}}
+
+Now we create a table called `employees`.
 
 `CREATE TABLE employees (
     emp_no      INT             NOT NULL,
