@@ -1,0 +1,17 @@
+cli-helpers==2.1.0
+click==7.1.2
+configobj==5.0.6
+pendulum==2.1.2
+pgcli==3.1.0
+pgspecial==1.12.1
+prompt-toolkit==3.0.16
+psycopg2==2.8.6
+Pygments==2.8.1
+python-dateutil==2.8.1
+pytzdata==2020.1
+setproctitle==1.2.2
+six==1.15.0
+sqlparse==0.4.1
+tabulate==0.8.9
+terminaltables==3.1.0
+wcwidth==0.2.5
