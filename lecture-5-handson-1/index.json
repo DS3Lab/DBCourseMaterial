@@ -1,6 +1,6 @@
 {
-  "title": "Interactive session with SQL",
-  "description": "This tutorial is for the Lecture 5 of the Data Modelling and Databases class [http://www.ds3lab.com/dmdb-2020/#lecture5]",
+  "title": "Lecture 5: Hands-on SQL 1",
+  "description": "This tutorial is for the Lecture 5 of the Data Modeling and Databases class (https://github.com/DS3Lab/DBCourseMaterial) at ETH.",
   "difficulty": "Beginner",
   "time": "90 minutes",
   "details": {
