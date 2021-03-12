@@ -38,7 +38,7 @@ removes duplicates:
 `SELECT DISTINCT last_name
 FROM employees
 ORDER BY last_name DESC
-LIMIT 10;;`{{execute}}
+LIMIT 10;`{{execute}}
 
 We can also sort by different columns and in different directions:
 

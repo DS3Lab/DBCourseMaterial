@@ -11,11 +11,13 @@ We start by getting the data present in the tables:
 
 `SELECT * FROM dept_emp;`{{execute}}
 
+Let's start with a Cartesian product (press `q` to get out of the pager):
+
 `SELECT * FROM employees, departments, dept_emp;`{{execute}}
 
-The cartesian product contains a lot of redundant information, therefore it's
-more beneficial to perform a join to only the matching rows. In the following
-query we select the employees that work in some department:
+The Cartesian product is usually not very useful alone. By combinding it with
+a selection, we can turn it into a join: In the following query we select the
+employees that work in some department:
 
 `SELECT *
 FROM employees, departments, dept_emp
