@@ -1,60 +1,78 @@
 {
-  "title": "Lecture 5: Hands-on SQL 1",
-  "description": "This tutorial is for the Lecture 5 of the Data Modeling and Databases class (https://github.com/DS3Lab/DBCourseMaterial) at ETH.",
-  "difficulty": "Beginner",
-  "time": "90 minutes",
-  "details": {
-    "steps": [
-      {
-        "title": "Step 1",
-        "text": "step1.md",
-        "code": "foreground.sh"
-      },
-      {
-        "title": "Step 2",
-        "text": "step2.md"
-      },
-      {
-        "title": "Step 3",
-        "text": "step3.md"
-      },
-      {
-        "title": "Step 4",
-        "text": "step4.md"
-      },
-      {
-        "title": "Step 5",
-        "text": "step5.md"
-      },
-      {
-        "title": "Step 6",
-        "text": "step6.md"
-      },
-      {
-        "title": "Step 7",
-        "text": "step7.md"
-      }
-      ],
-    "intro": {
-      "text": "intro.md"
+    "title": "Lecture 5: Hands-on SQL 1",
+    "description": "This tutorial is for the Lecture 5 of the Data Modeling and Databases class (https://github.com/DS3Lab/DBCourseMaterial) at ETH.",
+    "difficulty": "Beginner",
+    "time": "90 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Step 1",
+                "text": "step1.md",
+                "code": "foreground.sh"
+            },
+            {
+                "title": "Step 2",
+                "text": "step2.md"
+            },
+            {
+                "title": "Step 3",
+                "text": "step3.md"
+            },
+            {
+                "title": "Step 4",
+                "text": "step4.md"
+            },
+            {
+                "title": "Step 5",
+                "text": "step5.md"
+            },
+            {
+                "title": "Step 6",
+                "text": "step6.md"
+            },
+            {
+                "title": "Step 7",
+                "text": "step7.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "assets": {
+            "host01": [
+                {
+                    "file": "employee.zip",
+                    "target": "~/"
+                },
+                {
+                    "file": "populate.sh",
+                    "target": "~/",
+                    "chmod": "+x"
+                },
+                {
+                    "file": "pgcli.sh",
+                    "target": "/usr/local/bin/",
+                    "chmod": "+x"
+                },
+                {
+                    "file": "pgcli/*",
+                    "target": "/root/.config/"
+                },
+                {
+                    "file": "psql.sh",
+                    "target": "/usr/local/bin/",
+                    "chmod": "+x"
+                }
+            ]
+        },
+        "finish": {
+            "text": "finish.md"
+        }
     },
-    "assets": {
-      "host01": [
-        {"file": "employee.zip", "target": "~/"},
-        {"file": "populate.sh", "target": "~/", "chmod": "+x"},
-        {"file": "pgcli.sh", "target": "/usr/local/bin/", "chmod": "+x"},
-        {"file": "pgcli/*", "target": "/root/.config/"},
-        {"file": "psql.sh", "target": "/usr/local/bin/", "chmod": "+x"}
-      ]
+    "environment": {
+        "uilayout": "terminal"
     },
-    "finish": {
-      "text": "finish.md"
+    "backend": {
+        "imageid": ""
     }
-  },
-  "environment": {
-    "uilayout": "terminal"
-  },
-  "backend": {
-    "imageid": "ubuntu:2004"
-  }
 }

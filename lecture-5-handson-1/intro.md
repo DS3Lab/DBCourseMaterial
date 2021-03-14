@@ -1,6 +1,6 @@
 # Goal
 
-In this session we are going to dive into more in depth in SQL. To do that, we
+In this session we are going to dive more in depth with SQL. To do that, we
 will install a popular DBMS (PostgreSQL) and we will start from simple insert
 queries and go until queries with nested subqueries that also use the `WITH`
 clause.

@@ -1,36 +1,78 @@
 {
-  "title": "Interactive session with SQL",
-  "description": "This tutorial is for the Lecture 6 of the Data Modelling and Databases class [http://www.ds3lab.com/dmdb-2020/#lecture6]",
-  "difficulty": "Beginner",
-  "time": "90 minutes",
-  "details": {
-    "steps": [
-      {
-        "title": "Step 1",
-        "text": "step1.md"
-      },
-      {
-        "title": "Step 2",
-        "text": "step2.md"
-      },
-      {
-        "title": "Step 3",
-        "text": "step3.md"
-      }
-      ],
-    "intro": {
-      "text": "intro.md",
-      "courseData" : "setup.sh"
+    "title": "Interactive session with SQL",
+    "description": "This tutorial is for the Lecture 6 of the Data Modelling and Databases class [http://www.ds3lab.com/dmdb-2020/#lecture6]",
+    "difficulty": "Beginner",
+    "time": "90 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Step 1",
+                "text": "step1.md",
+                "code": "foreground.sh"
+            },
+            {
+                "title": "Step 2",
+                "text": "step2.md"
+            },
+            {
+                "title": "Step 3",
+                "text": "step3.md"
+            },
+            {
+                "title": "Step 4",
+                "text": "step4.md"
+            },
+            {
+                "title": "Step 5",
+                "text": "step4.md"
+            },
+            {
+                "title": "Step 6",
+                "text": "step4.md"
+            },
+            {
+                "title": "Step 7",
+                "text": "step4.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "finish": {
+            "text": "finish.md"
+        },
+        "assets": {
+            "host01": [
+                {
+                    "file": "populate.sh",
+                    "target": "~/",
+                    "chmod": "+x"
+                },
+                {
+                    "file": "pgcli.sh",
+                    "target": "/usr/local/bin/",
+                    "chmod": "+x"
+                },
+                {
+                    "file": "pgcli/*",
+                    "target": "/root/.config/"
+                },
+                {
+                    "file": "psql.sh",
+                    "target": "/usr/local/bin/",
+                    "chmod": "+x"
+                },
+                {
+                    "file": "inserts.sql",
+                    "target": "~/"
+                }
+            ]
+        }
     },
-    "finish": {
-      "text": "finish.md"
+    "environment": {
+        "uilayout": "terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu:2004"
     }
-  },
-  "environment": {
-    "uilayout": "terminal"
-  },
-  "backend": {
-    "imageid": "kafka:2.4"
-
-  }
 }
