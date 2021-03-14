@@ -17,7 +17,7 @@ Duplicating columns:
 
 Mathematical operations and boolean expression evaluation:
 
-`SELECT title, duration/60, (duration > 360) FROM tracks LIMIT 10';`{{execute}}
+`SELECT title, duration/60, (duration > 360) FROM tracks LIMIT 10;`{{execute}}
 
 String concatenation:
 
