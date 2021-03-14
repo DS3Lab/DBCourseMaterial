@@ -29,7 +29,7 @@ create table tracks (
     duration int null
 );
 
-COPY artists FROM '/var/lib/postgresql/discogs/artists.csv' delimiters ',' csv header;
-COPY releases FROM '/var/lib/postgresql/discogs/releases.csv' delimiters ',' csv header;
-COPY released_by FROM '/var/lib/postgresql/discogs/released_by.csv' delimiters ',' csv header;
-COPY tracks FROM '/var/lib/postgresql/discogs/tracks.csv' delimiters ',' csv header;
+COPY artists FROM '/var/lib/postgresql/artists.csv' delimiters ',' csv header;
+COPY releases FROM '/var/lib/postgresql/releases.csv' delimiters ',' csv header;
+COPY released_by FROM '/var/lib/postgresql/released_by.csv' delimiters ',' csv header;
+COPY tracks FROM '/var/lib/postgresql/tracks.csv' delimiters ',' csv header;
