@@ -1,74 +1,75 @@
-# Aggregations
+# Joins
 
-Now that we have seen joins, let's perform some simple aggregations.
+We often want to perform queries that work over information stored in two separate tables. Here, we
+use joins.
 
-The duration of the longest track:
+The most rudimentary way to join two tables together is the *cartesian product*:
 
-`SELECT MAX(duration) FROM tracks;`{{execute}}
+`SELECT * 
+    FROM artists, releases, released_by
+    LIMIT 1;`{{execute}}
 
-Number of unique album/release titles:
+However, this generates ALL combinations of tuples, which is rarely what we want. We can specify
+a condition to only join together tuples which share key fields:
 
-`SELECT COUNT(DISTINCT title) FROM releases;`{{execute}}
-
-#### Aggregations with grouping
-It's not very useful to only be able to aggregate (MAX/COUNT etc.) at a table level. We can
-*group* together all tuples with the same value for an attribute using the `GROUP BY` keyword. 
-
-`SELECT title, COUNT(*)
-    FROM releases
-    GROUP BY title
+`SELECT artists.name, releases.title
+    FROM artists, releases, released_by
+    WHERE artists.artist_id = released_by.artist_id
+    AND releases.release_id = released_by.release_id
     LIMIT 10;`{{execute}}
 
-What this does is first form groups (can be thought of as buckets/mini-relations) of tuples, such
-that each group only contains titles with the same tuple. There will be one group for each distinct
-`title` in `releases`.
+This can take a long time to type, so we can give our base tables *aliases* which make things
+a bit faster.
 
-Then, we specify the aggregation function (`COUNT(*)`) which is applied at a group level to 
-produce our final result.
-
-#### Counting releases with a specific title?
-
-Let's say we want to count the number of releases with a given title. Do we need the `GROUP BY`?
-
-We can do that very simply counting after a filter:
-
-`SELECT COUNT(*)
-    FROM releases
-    WHERE title = 'Reverence';`{{execute}}
-
-What if we wanted to return the title as well?
-
-`SELECT title, COUNT(*)
-    FROM releases
-    WHERE title = 'Reverence';`{{execute}}
-
-Why does this fail? When we apply the `COUNT(*)` function without a `GROUP BY`, it applies
-the function to the *entire* table, whereas the `title` attribute belongs to either a tuple or
-a group and does not exist at the table level. So we include the `GROUP BY`, even though the
-filtered table will only produce one group (title = 'Reverence');
-
-`SELECT title, COUNT(*)
-    FROM releases
-    WHERE title = 'Reverence'
-    GROUP BY title;`{{execute}}
-
-#### Sorting by aggregation result
-
-We can also find the most frequent titles:
-
-`SELECT title, COUNT(*) as freq
-    FROM releases
-    GROUP BY title
-    ORDER BY freq DESC
+`SELECT A.name, R.title
+    FROM artists A, releases R, released_by RB
+    WHERE A.artist_id = RB.artist_id
+    AND R.release_id = RB.release_id
     LIMIT 10;`{{execute}}
 
-#### Filtering by aggregation results
+We can also filter out tuples in rows, just like any other query:
 
-If we want to filter (select) based on the result of the aggregation function (e.g. `COUNT`),
-we can't do that in the `WHERE` clause, which filters on tuples/rows rather than groups.
-Instead, we can using the `HAVING` clause:
+`SELECT A.name, R.title
+    FROM artists A, releases R, released_by RB
+    WHERE A.artist_id = RB.artist_id
+    AND R.release_id = RB.release_id
+    AND A.name = 'Radiohead';`{{execute}}
 
-`SELECT title, COUNT(*)
-    FROM releases
-    GROUP BY title
-    HAVING COUNT(*) = 42;`{{execute}}
+Duplicate entries can be eliminated with the `DISTINCT` keyword.
+
+`SELECT DISTINCT A.name, R.title
+    FROM artists A, releases R, released_by RB
+    WHERE A.artist_id = RB.artist_id
+    AND R.release_id = RB.release_id
+    AND A.name = 'Radiohead';`{{execute}}
+
+#### Join variants
+
+There are a lot of ways to join tables together in SQL.
+
+Joins using the `JOIN ON` keyword, which returns rows satisfying a boolean expression:
+
+`SELECT A.name, R.title
+    FROM artists A
+    JOIN released_by RB ON A.artist_id = RB.artist_id
+    JOIN releases R ON RB.release_id = R.release_id
+    LIMIT 10;`{{execute}}
+
+Joins using the `USING` keyword, which checks for equality based on a shared attribute name:
+
+`SELECT A.name, R.title
+    FROM artists A
+    JOIN released_by RB USING(artist_id)
+    JOIN releases R USING(release_id)
+    LIMIT 10;`{{execute}}
+
+Joins using the 'NATURAL JOIN' keyword, which finds *all* common attribute names and joins
+based on those being equal:
+
+`SELECT A.name, R.title
+    FROM artists A
+    NATURAL JOIN released_by RB
+    NATURAL JOIN releases R
+    LIMIT 10;`{{execute}}
+
+There's another subtle difference with the `NATURAL JOIN` keyword. See if you can spot it.

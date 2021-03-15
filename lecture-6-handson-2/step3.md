@@ -1,28 +1,36 @@
-# Basic queries
+# Inserting data
 
-Let's perform some very simple queries on our data. Firstly, let's retrive all the
-artists called "Radiohead".
+In this part of the session, we'll try inserting some data and seeing what works and what doesn't.
 
-`SELECT * FROM artists WHERE name = 'Radiohead';`{{execute}}
+Let's try insert an artist 'by hand':
 
-If you don't know the exact name of an artist (up to the casing) it can we helpful to know 
-the following keywords:
+`INSERT INTO artists VALUES (124313250, ‘myband1’);`{{execute}}
 
-#### Like
+We can explicitly state which attributes are inserted, allowing us to omit attributes
+or re-order them in the query:
 
-The `LIKE` keyword does a pattern matching in the respective attribute. For
-example the following query will return the name, profile, and url of all
-artist entries that contain the substring "Beatles".
+`INSERT INTO artists (artist_id, name) VALUES (124313251, 'myband2');`{{execute}}
 
-`SELECT name, profile, url FROM artists WHERE name LIKE '%Beatles%';`{{execute}}
+### Erroneous insertions?
 
-The "%" character allows an arbitrary number of characters before and/or after the pattern.
-If there is no "%" before the pattern, then it will only match values that *start*
-with "Beatles".
+The following insertions may or may not complete successfully.
+Before executing each query, try to predict what will happen.
+If you think the insertion will cause an error, try to explain *why* it will occur.
 
-#### Case casts
+`INSERT INTO artists VALUE (124313250, 'myband3');`{{execute}}
 
-The `UPPER` and `LOWER` functions transform a string to upper/lower case, allowing you to
-match strings more dynamically:
+`INSERT INTO artists VALUE (’unique_id’, ‘myband4’);`{{execute}}
 
-`SELECT name, profile, url from artists where UPPER(name) = 'DJ BOBO';`{{execute}}
+`INSERT INTO artists VALUE (124313252);`{{execute}}
+
+The `released_by` table associates an artist with one of their releases by storing
+the `artist_id` and `release_id` of the relevant artist and release respectively.
+
+`SELECT * FROM artists WHERE artist_id = 24214812784;`{{execute}}
+
+Since the above query returns no artists, will the below query work?
+
+`INSERT INTO released_by VALUES (2, 24214812784);`{{execute}}
+
+No! Because there is no foreign key constraint on `released_by`, this insertion satisfies
+the schema constraints.

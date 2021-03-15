@@ -1,36 +1,77 @@
 # Inserting data
 
-In this part of the session, we'll try inserting some data and seeing what works and what doesn't.
+In this part of the session, we will see how to insert data in our database
+instance. Let's start the client, create a database, and connect to it:
 
-Let's try insert an artist 'by hand':
+`pgcli.sh -h postgres-server -u postgres`{{execute}}
 
-`INSERT INTO artists VALUES (124313250, ‘myband1’);`{{execute}}
+`CREATE DATABASE testdatabase;`{{execute}}
 
-We can explicitly state which attributes are inserted, allowing us to omit attributes
-or re-order them in the query:
+`\c testdatabase`{{execute}}
 
-`INSERT INTO artists (artist_id, name) VALUES (124313251, 'myband2');`{{execute}}
+Now we create a table called `employees`.
 
-### Erroneous insertions?
+`CREATE TABLE employees (
+    emp_no      INT             NOT NULL,
+    birth_date  DATE            NULL,
+    first_name  VARCHAR(14)     NOT NULL,
+    last_name   VARCHAR(16)     NOT NULL,
+    gender      CHAR(1)         NOT NULL DEFAULT '?',
+    hire_date   DATE            NOT NULL,
+    PRIMARY KEY (emp_no)
+);`{{execute}}
 
-The following insertions may or may not complete successfully.
-Before executing each query, try to predict what will happen.
-If you think the insertion will cause an error, try to explain *why* it will occur.
+We first validate that the table is empty:
 
-`INSERT INTO artists VALUE (124313250, 'myband3');`{{execute}}
+`SELECT * FROM employees;`{{execute}}
 
-`INSERT INTO artists VALUE (’unique_id’, ‘myband4’);`{{execute}}
+And then we insert some data.
 
-`INSERT INTO artists VALUE (124313252);`{{execute}}
+Without columns as parameters:
+`INSERT INTO employees
+VALUES (10001, '1980-10-02', 'Ce', 'Zhang', 'M', '2016-01-01');`{{execute}}
 
-The `released_by` table associates an artist with one of their releases by storing
-the `artist_id` and `release_id` of the relevant artist and release respectively.
+With columns as parameters:
+`INSERT INTO employees
+       (emp_no, birth_date,   first_name, last_name, gender, hire_date)
+VALUES (10002,  '1980-10-02', 'Gustavo',  'Alonso',  'M',    '2016-01-01');`{{execute}}
 
-`SELECT * FROM artists WHERE artist_id = 24214812784;`{{execute}}
+With `NULL` values:
+`INSERT INTO employees
+       (emp_no, first_name, last_name, gender, hire_date)
+VALUES (10003,  'Ingo',     'Mueller', 'M',    '2016-01-01');`{{execute}}
 
-Since the above query returns no artists, will the below query work?
+Now the data are inside the table.
 
-`INSERT INTO released_by VALUES (2, 24214812784);`{{execute}}
+`SELECT * FROM employees;`{{execute}}
 
-No! Because there is no foreign key constraint on `released_by`, this insertion satisfies
-the schema constraints.
+Based on the table schema, there are restrictions in the data that we can insert.
+Some examples are:
+
+Primary key non-duplicates:
+
+`INSERT INTO employees
+VALUES (10001, '1953-09-02', 'Georgi', 'Facello', 'M', '1986-06-26');`{{execute}}
+
+Wrong types:
+
+`INSERT INTO employees
+VALUES ('asdf', '1953-09-02', 'Georgi', 'Facello', 'M', '1986-06-26');`{{execute}}
+
+`INSERT INTO employees
+VALUES (10004, 'hello', 'Georgi', 'Facello', 'M', '1986-06-26');`{{execute}}
+
+`INSERT INTO employees
+VALUES (10004, '1953-09-02', 'Georgi', 'Facello', 'MM', '1986-06-26');`{{execute}}
+
+Missing values:
+
+`INSERT INTO employees
+       (emp_no, birth_date,   last_name, gender, hire_date)
+VALUES (10004,  '1953-09-02', 'Facello', 'M',    '1986-06-26');`{{execute}}
+
+But missing values can sometimes (when?) work:
+
+`INSERT INTO employees
+       (emp_no, birth_date,  first_name, last_name, hire_date)
+VALUES (10004,  '1953-09-02', 'Georgi',  'Facello', '1986-06-26');`{{execute}}

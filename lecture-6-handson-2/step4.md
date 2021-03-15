@@ -1,32 +1,28 @@
-# Projections
+# Basic queries
 
-Let's perform some (more) projections on the data, beyond just filtering out attributes/columns
-from the base table.
+Let's perform some very simple queries on our data. Firstly, let's retrive all the
+artists called "Radiohead".
 
-Renaming a column:
+`SELECT * FROM artists WHERE name = 'Radiohead';`{{execute}}
 
-`SELECT name, url as link FROM artists WHERE name = 'Rick Astley';`{{execute}}
+If you don't know the exact name of an artist (up to the casing) it can we helpful to know 
+the following keywords:
 
-Projecting literals as columns in the result of the query:
+#### Like
 
-`SELECT 'hi', 5, name FROM artists WHERE name = 'ILLENIUM';`{{execute}}
+The `LIKE` keyword does a pattern matching in the respective attribute. For
+example the following query will return the name, profile, and url of all
+artist entries that contain the substring "Beatles".
 
-Duplicating columns:
+`SELECT name, profile, url FROM artists WHERE name LIKE '%Beatles%';`{{execute}}
 
-`SELECT name, name FROM artists WHERE name = 'Linkin Park';`{{execute}}
+The "%" character allows an arbitrary number of characters before and/or after the pattern.
+If there is no "%" before the pattern, then it will only match values that *start*
+with "Beatles".
 
-Mathematical operations and boolean expression evaluation:
+#### Case casts
 
-`SELECT title, duration/60, (duration > 360) FROM tracks LIMIT 10;`{{execute}}
+The `UPPER` and `LOWER` functions transform a string to upper/lower case, allowing you to
+match strings more dynamically:
 
-String concatenation:
-
-`SELECT title || ' - ' || genre FROM releases LIMIT 10;`{{execute}}
-
-`SELECT title || ' ' || 5 FROM releases LIMIT 10;`{{execute}}
-
-Special functions on dates:
-
-`SELECT title, EXTRACT(year FROM released) AS release_year, AGE(released) AS age
-    FROM releases
-    LIMIT 10;`{{execute}}
+`SELECT name, profile, url from artists where UPPER(name) = 'DJ BOBO';`{{execute}}
