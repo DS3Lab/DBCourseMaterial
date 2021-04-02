@@ -1,0 +1,58 @@
+{
+    "title": "Exercise 02 - SQL I",
+    "description": "ETH Zürich DMDB 2021: Scenario to assist with running queries for exercise 02.",
+    "difficulty": "Beginner",
+    "time": "10 minutes",
+    "details": {
+        "steps": [
+            {
+                "title": "Step 1",
+                "text": "step1.md",
+                "code": "foreground.sh"
+            },
+            {
+                "title": "Step 2",
+                "text": "step2.md"
+            },
+            {
+                "title": "Step 3",
+                "text": "step3.md"
+            }
+        ],
+        "intro": {
+            "text": "intro.md"
+        },
+        "assets": {
+            "host01": [
+                {
+                    "file": "datasets.zip",
+                    "target": "/tmp/"
+                },
+                {
+                    "file": "pgcli.sh",
+                    "target": "/usr/local/bin/",
+                    "chmod": "+x"
+                },
+                {
+                    "file": "psql.sh",
+                    "target": "/usr/local/bin/",
+                    "chmod": "+x"
+                },
+                {
+                    "file": "populate.sh",
+                    "target": "/usr/local/bin/",
+                    "chmod": "+x"
+                }
+            ]
+        },
+        "finish": {
+            "text": "finish.md"
+        }
+    },
+    "environment": {
+        "uilayout": "terminal"
+    },
+    "backend": {
+        "imageid": "ubuntu:2004"
+    }
+}
